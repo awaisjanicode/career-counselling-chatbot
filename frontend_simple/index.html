@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerPath AI - Intelligent Advisor</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#4f46e5',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-sidebar {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .dark .glass-sidebar {
+            background: rgba(15, 23, 42, 0.7);
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .chat-container::-webkit-scrollbar { width: 4px; }
+        .chat-container::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+        .dark .chat-container::-webkit-scrollbar-thumb { background: #334155; }
+        .msg-bubble p { margin-bottom: 0.5rem; }
+        .msg-bubble p:last-child { margin-bottom: 0; }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 h-screen flex flex-col overflow-hidden transition-colors duration-300">
+    
+    <div class="flex h-full overflow-hidden">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="hidden md:flex w-80 h-full flex-col glass-sidebar border-r border-slate-200 dark:border-slate-800 z-50 transition-all duration-300">
+            <!-- Logo area -->
+            <div class="p-6 flex items-center gap-3">
+                <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/30">
+                    <span class="text-xl font-bold">C</span>
+                </div>
+                <h1 class="text-xl font-extrabold tracking-tight">CareerPath AI</h1>
+            </div>
+
+            <!-- New Advisory Button -->
+            <div class="px-6 pb-6">
+                <button onclick="newChat()" class="w-full flex items-center justify-between p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 shadow-sm hover:shadow-md transition-all group">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
+                        </div>
+                        <span class="font-bold text-sm text-slate-700 dark:text-slate-200">New Advisory</span>
+                    </div>
+                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                </button>
+            </div>
+
+            <!-- Features / Domains -->
+            <div class="flex-1 overflow-y-auto px-6 py-2 space-y-1">
+                <p class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] mb-4 px-2">Knowledge Domains</p>
+                
+                <button onclick="sendFromWelcome('Medicine University Plan')" class="w-full text-left p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/50 flex items-center gap-4 transition-all group">
+                    <span class="w-8 h-8 rounded-lg flex items-center justify-center text-sm bg-blue-500/10 text-blue-500">🩺</span>
+                    <span class="text-sm font-semibold text-slate-600 dark:text-slate-400 truncate group-hover:text-slate-900 dark:group-hover:text-white">Medicine University Plan</span>
+                </button>
+                
+                <button onclick="sendFromWelcome('Computer Science Roadmap')" class="w-full text-left p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/50 flex items-center gap-4 transition-all group">
+                    <span class="w-8 h-8 rounded-lg flex items-center justify-center text-sm bg-indigo-500/10 text-indigo-500">💻</span>
+                    <span class="text-sm font-semibold text-slate-600 dark:text-slate-400 truncate group-hover:text-slate-900 dark:group-hover:text-white">Computer Science Roadmap</span>
+                </button>
+                
+                <button onclick="sendFromWelcome('What scholarships are available for 2026?')" class="w-full text-left p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/50 flex items-center gap-4 transition-all group">
+                    <span class="w-8 h-8 rounded-lg flex items-center justify-center text-sm bg-amber-500/10 text-amber-500">📜</span>
+                    <span class="text-sm font-semibold text-slate-600 dark:text-slate-400 truncate group-hover:text-slate-900 dark:group-hover:text-white">Scholarships for 2026</span>
+                </button>
+                
+                <button onclick="sendFromWelcome('Top Engineering Schools in Pakistan')" class="w-full text-left p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/50 flex items-center gap-4 transition-all group">
+                    <span class="w-8 h-8 rounded-lg flex items-center justify-center text-sm bg-emerald-500/10 text-emerald-500">⚙️</span>
+                    <span class="text-sm font-semibold text-slate-600 dark:text-slate-400 truncate group-hover:text-slate-900 dark:group-hover:text-white">Top Engineering Schools</span>
+                </button>
+            </div>
+
+            <!-- Sidebar Footer -->
+            <div class="p-6 border-t border-slate-200 dark:border-slate-800">
+                <button onclick="switchTab('cv')" class="w-full flex items-center gap-4 p-4 rounded-2xl text-sm font-bold text-white bg-gradient-to-r from-rose-500 to-rose-600 shadow-lg shadow-rose-500/20 hover:opacity-90 transition-all mb-4">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    ATS CV Analyzer
+                </button>
+                
+                <button class="w-full flex items-center gap-3 p-3 rounded-xl text-sm font-semibold text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    Export Intel
+                </button>
+                
+                <button onclick="showCredits()" class="w-full flex items-center gap-3 p-3 rounded-xl text-sm font-semibold text-primary hover:bg-primary/5 transition-all mt-1">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    Project Credits
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col h-full bg-white dark:bg-slate-950 relative overflow-hidden">
+            <!-- Background Orbs -->
+            <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[120px] pointer-events-none"></div>
+            <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-rose-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+            <!-- Header / Tabs -->
+            <header class="h-16 flex items-center justify-between px-8 border-b border-slate-100 dark:border-slate-800 z-10">
+                <div class="flex items-center gap-2">
+                    <button id="advisorTab" onclick="switchTab('advisor')" class="px-6 py-2 rounded-full text-sm font-bold bg-slate-100 dark:bg-slate-800 text-primary transition-all">Advisor</button>
+                    <button id="unisTab" onclick="switchTab('unis')" class="px-6 py-2 rounded-full text-sm font-bold text-slate-500 hover:text-slate-900 dark:hover:text-white transition-all">Universities</button>
+                    <button id="cvTab" onclick="switchTab('cv')" class="px-6 py-2 rounded-full text-sm font-bold text-slate-500 hover:text-slate-900 dark:hover:text-white transition-all">CV Analyzer</button>
+                </div>
+
+                <div class="flex items-center gap-6">
+                    <button onclick="toggleTheme()" class="p-2 text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all">
+                        <svg id="moonIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                        <svg id="sunIcon" class="hidden w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    </button>
+                    <div class="flex flex-col items-end">
+                        <span class="text-[8px] font-bold uppercase tracking-widest text-slate-400">Powered by</span>
+                        <span class="text-[11px] font-extrabold text-slate-900 dark:text-white">Google Gemini</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Chat / Content Area -->
+            <div id="chatScroll" class="flex-1 overflow-y-auto chat-container">
+                <div id="chatMessages" class="max-w-4xl mx-auto py-12 px-6 space-y-10">
+                    <!-- Welcome Screen -->
+                    <div id="welcomeScreen" class="py-12 text-center">
+                        <div class="w-24 h-24 bg-gradient-to-br from-primary to-secondary rounded-[2.5rem] flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-primary/30 animate-float">
+                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <h2 class="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">Hello, I'm APEX.</h2>
+                        <p class="text-slate-500 dark:text-slate-400 font-medium text-lg max-w-md mx-auto mb-10">Your specialized AI advisor for Universities, Scholarships, and Career Roadmaps.</p>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+                            <button onclick="sendFromWelcome('What career roadmap should I follow for Computer Science?')" class="flex items-center gap-4 p-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl hover:border-primary/50 hover:shadow-lg transition-all text-left group">
+                                <span class="text-2xl group-hover:scale-110 transition-transform">🗺️</span>
+                                <div>
+                                    <h4 class="font-bold text-sm text-slate-900 dark:text-white">CS Career Roadmap</h4>
+                                    <p class="text-xs text-slate-500">Step-by-step learning path</p>
+                                </div>
+                            </button>
+                            <button onclick="sendFromWelcome('Tell me about top engineering universities in Peshawar')" class="flex items-center gap-4 p-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl hover:border-primary/50 hover:shadow-lg transition-all text-left group">
+                                <span class="text-2xl group-hover:scale-110 transition-transform">🏫</span>
+                                <div>
+                                    <h4 class="font-bold text-sm text-slate-900 dark:text-white">Peshawar Universities</h4>
+                                    <p class="text-xs text-slate-500">Local admission details</p>
+                                </div>
+                            </button>
+                            <button onclick="sendFromWelcome('What scholarships are available for engineering students?')" class="flex items-center gap-4 p-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl hover:border-primary/50 hover:shadow-lg transition-all text-left group">
+                                <span class="text-2xl group-hover:scale-110 transition-transform">🎓</span>
+                                <div>
+                                    <h4 class="font-bold text-sm text-slate-900 dark:text-white">Scholarships Search</h4>
+                                    <p class="text-xs text-slate-500">Financial aid opportunities</p>
+                                </div>
+                            </button>
+                            <button onclick="sendFromWelcome('How do I become a Data Scientist?')" class="flex items-center gap-4 p-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl hover:border-primary/50 hover:shadow-lg transition-all text-left group">
+                                <span class="text-2xl group-hover:scale-110 transition-transform">📊</span>
+                                <div>
+                                    <h4 class="font-bold text-sm text-slate-900 dark:text-white">Data Science Path</h4>
+                                    <p class="text-xs text-slate-500">Skills and certifications</p>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="px-8 pb-4 w-full z-10">
+                <div class="max-w-3xl mx-auto relative">
+                    <div class="bg-slate-100 dark:bg-slate-900 rounded-[2rem] p-3 shadow-2xl border border-slate-200 dark:border-slate-800 flex flex-col transition-all focus-within:ring-2 focus-within:ring-primary/20">
+                        <textarea id="msgInput" onkeydown="handleKey(event)" oninput="autoGrow(this)" class="w-full px-4 py-3 text-base bg-transparent focus:outline-none resize-none min-h-[50px] max-h-[200px] text-slate-900 dark:text-white placeholder-slate-500" placeholder="Ask about career roadmaps, ATS resume scores, or university information..."></textarea>
+                        
+                        <div class="flex items-center justify-between mt-1 px-2">
+                            <div class="flex items-center gap-2">
+                                <button onclick="triggerFile()" class="p-2 text-slate-400 hover:text-primary transition-all rounded-xl hover:bg-primary/5" title="Upload CV">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg>
+                                </button>
+                                <button id="micBtn" onclick="toggleVoice()" class="p-2 text-slate-400 hover:text-primary transition-all rounded-xl hover:bg-primary/5" title="Voice Input">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
+                                </button>
+                                <input type="file" id="fileInput" class="hidden" onchange="handleFileSelect(event)">
+                            </div>
+                            
+                            <button id="sendBtn" onclick="send()" class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center shadow-lg shadow-primary/20 hover:scale-105 transition-all disabled:opacity-30 disabled:scale-100">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text-center text-[10px] text-slate-400 dark:text-slate-500 font-medium mt-3">
+                        CareerPath AI can make mistakes. Please double-check important information.
+                    </p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Credits Modal (Hidden by default) -->
+    <div id="creditsModal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 w-full max-w-md rounded-3xl p-8 shadow-2xl border border-slate-200 dark:border-slate-800">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl font-bold">Project Credits</h2>
+                <button onclick="hideCredits()" class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-all text-slate-400">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-[11px] font-bold uppercase tracking-widest text-primary mb-4 px-1">Development Team</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-4 p-3 bg-slate-50 dark:bg-slate-800/40 rounded-2xl border border-slate-100 dark:border-slate-800">
+                            <div class="w-10 h-10 rounded-xl bg-indigo-500 flex items-center justify-center text-white text-xs font-bold">MD</div>
+                            <div>
+                                <p class="text-sm font-bold">Muhammad Danyal</p>
+                                <p class="text-[10px] text-slate-500">22145784</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 p-3 bg-slate-50 dark:bg-slate-800/40 rounded-2xl border border-slate-100 dark:border-slate-800">
+                            <div class="w-10 h-10 rounded-xl bg-indigo-500 flex items-center justify-center text-white text-xs font-bold">MA</div>
+                            <div>
+                                <p class="text-sm font-bold">Muhammad Awais</p>
+                                <p class="text-[10px] text-slate-500">22145824</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 p-3 bg-slate-50 dark:bg-slate-800/40 rounded-2xl border border-slate-100 dark:border-slate-800">
+                            <div class="w-10 h-10 rounded-xl bg-indigo-500 flex items-center justify-center text-white text-xs font-bold">UK</div>
+                            <div>
+                                <p class="text-sm font-bold">Usman Khan</p>
+                                <p class="text-[10px] text-slate-500">22140163</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-[11px] font-bold uppercase tracking-widest text-emerald-500 mb-4 px-1">Project Supervisor</h3>
+                    <div class="p-4 bg-emerald-50 dark:bg-emerald-500/5 border border-emerald-100 dark:border-emerald-500/20 rounded-2xl">
+                        <p class="text-sm font-bold">Dr. Shahid Akbar</p>
+                        <p class="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold mt-1">Department of Computer Science</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>

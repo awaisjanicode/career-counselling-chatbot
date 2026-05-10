@@ -1,0 +1,119 @@
+[
+  {
+    "field": "Computer Science",
+    "degree": "BS Computer Science",
+    "duration": "4 years",
+    "skills": ["Python", "Java", "Data Structures", "Algorithms", "Web Development", "AI/ML", "Cloud Computing"],
+    "careers": ["Software Engineer", "Data Scientist", "AI Engineer", "Web Developer", "Cybersecurity Analyst"],
+    "avg_salary_pkr": "80,000 - 300,000/month",
+    "top_companies": ["Systems Ltd", "Netsol", "10Pearls", "Arbisoft", "Remote Jobs (Upwork/Toptal)"]
+  },
+  {
+    "field": "Electrical Engineering",
+    "degree": "BE Electrical Engineering",
+    "duration": "4 years",
+    "skills": ["Circuit Design", "MATLAB", "AutoCAD", "Power Systems", "Embedded Systems"],
+    "careers": ["Electrical Engineer", "Power Engineer", "Embedded Systems Developer", "Telecom Engineer"],
+    "avg_salary_pkr": "70,000 - 200,000/month",
+    "top_companies": ["WAPDA", "PTCL", "Huawei", "Siemens Pakistan"]
+  },
+  {
+    "field": "Medicine",
+    "degree": "MBBS",
+    "duration": "5 years + 1 year house job",
+    "skills": ["Clinical Skills", "Patient Care", "Research", "Medical Technology"],
+    "careers": ["General Physician", "Specialist Doctor", "Surgeon", "Medical Researcher"],
+    "avg_salary_pkr": "100,000 - 500,000/month",
+    "top_companies": ["Public/Private Hospitals", "Research Institutes", "International Opportunities"]
+  },
+  {
+    "field": "Business Administration",
+    "degree": "BBA / MBA",
+    "duration": "4 years (BBA) + 2 years (MBA)",
+    "skills": ["Financial Analysis", "Marketing", "Leadership", "Excel", "ERP Systems"],
+    "careers": ["Business Analyst", "Marketing Manager", "Finance Officer", "Entrepreneur"],
+    "avg_salary_pkr": "60,000 - 250,000/month",
+    "top_companies": ["Unilever", "P&G", "Banks", "Startups"]
+  },
+  {
+    "field": "Artificial Intelligence",
+    "degree": "BS Artificial Intelligence / Computer Science",
+    "duration": "4 years",
+    "skills": ["Python", "TensorFlow", "PyTorch", "Scikit-learn", "Deep Learning", "Data Preprocessing", "Feature Engineering"],
+    "careers": ["Machine Learning Engineer", "AI Researcher", "Computer Vision Engineer", "NLP Specialist"],
+    "avg_salary_pkr": "100,000 - 450,000/month",
+    "top_companies": ["Afiniti", "Motive", "Systems Ltd", "Arbisoft", "10Pearls"]
+  },
+  {
+    "field": "Data Engineering",
+    "degree": "BS Data Science / Computer Science",
+    "duration": "4 years",
+    "skills": ["SQL", "Apache Kafka", "Spark", "Cloud Infrastructure (AWS/Azure)", "ETL Pipelines", "Distributed Systems"],
+    "careers": ["Data Engineer", "Streaming Data Engineer", "Platform Data Engineer", "Analytics Engineer"],
+    "avg_salary_pkr": "90,000 - 380,000/month",
+    "top_companies": ["TeraData", "Systems Ltd", "Jazz", "Telenor", "Careem"]
+  },
+  {
+    "field": "Big Data Analytics",
+    "degree": "BS Big Data / Data Science",
+    "duration": "4 years",
+    "skills": ["Hadoop", "Spark", "Hive", "HBase", "Distributed Computing", "NoSQL Databases", "Data Visualization"],
+    "careers": ["Big Data Engineer", "Big Data Analyst", "Data Architect"],
+    "avg_salary_pkr": "85,000 - 350,000/month",
+    "top_companies": ["TeraData", "Systems Ltd", "Netsol", "Techlogix"]
+  },
+  {
+    "field": "Streaming Data Engineering",
+    "degree": "BS/MS Computer Science (Data Engineering Focus)",
+    "duration": "4 years",
+    "skills": ["Java", "Scala", "Python", "SQL", "Apache Kafka", "Flink", "Spark Streaming", "Event-driven Architecture"],
+    "careers": ["Streaming Data Engineer", "Real-time Data Pipeline Developer", "Latency Optimization Specialist"],
+    "avg_salary_pkr": "120,000 - 450,000/month",
+    "top_companies": ["Systems Ltd", "Motive", "Afiniti", "Careem", "Remote Global Tech"]
+  },
+  {
+    "field": "Cloud Data Infrastructure",
+    "degree": "BS Computer Science / Software Engineering",
+    "duration": "4 years",
+    "skills": ["Kubernetes", "Docker", "Terraform", "Helm", "Airflow", "Go", "Infrastructure as Code", "CI/CD"],
+    "careers": ["Platform Data Engineer", "Data Infrastructure Engineer", "Site Reliability Engineer (Data)"],
+    "avg_salary_pkr": "110,000 - 400,000/month",
+    "top_companies": ["10Pearls", "Arbisoft", "Devsinc", "KeepTruckin"]
+  },
+  {
+    "field": "Data Architecture",
+    "degree": "MS Data Architecture / Computer Science",
+    "duration": "2 years (post-BS)",
+    "skills": ["HDFS", "AWS S3", "Delta Lake", "Databricks", "Metadata Management", "Data Governance", "Security Design"],
+    "careers": ["Data Lake Architect", "Enterprise Data Architect", "Data Governance Manager"],
+    "avg_salary_pkr": "150,000 - 600,000/month",
+    "top_companies": ["Teradata", "Systems Ltd", "HBL", "Jazz"]
+  },
+  {
+    "field": "Distributed Systems",
+    "degree": "MS Computer Science (Distributed Systems)",
+    "duration": "2 years (post-BS)",
+    "skills": ["Java", "Go", "C++", "Zookeeper", "gRPC", "Cassandra", "Consensus Protocols", "Fault Tolerance"],
+    "careers": ["Distributed Systems Engineer", "Backend Architect", "High-Performance Computing Engineer"],
+    "avg_salary_pkr": "140,000 - 550,000/month",
+    "top_companies": ["Motive", "Afiniti", "Remote Systems (Google/Meta/etc.)"]
+  },
+  {
+    "field": "Applied Statistics & AI",
+    "degree": "MS/PhD Statistics / Machine Learning",
+    "duration": "2-5 years (post-BS)",
+    "skills": ["Python", "R", "Stan", "Julia", "Bayesian Inference", "MCMC Sampling", "Experimental Design", "TensorFlow"],
+    "careers": ["Machine Learning Modeler", "Statistical Consultant", "Bayesian Specialist", "Forecasting Analyst"],
+    "avg_salary_pkr": "130,000 - 500,000/month",
+    "top_companies": ["Aga Khan University", "Research Labs", "FinTech Startups"]
+  },
+  {
+    "field": "Data Visualization & Analytics",
+    "degree": "BS Data Science / Business Analytics",
+    "duration": "4 years",
+    "skills": ["Tableau", "Power BI", "D3.js", "SQL", "DAX", "M", "Data Storytelling", "UX Design"],
+    "careers": ["Tableau Developer", "Power BI Analyst", "Visualization Engineer", "UX-focused Data Analyst"],
+    "avg_salary_pkr": "80,000 - 300,000/month",
+    "top_companies": ["Jazz", "Telenor", "P&G", "Unilever", "Systems Ltd"]
+  }
+]
