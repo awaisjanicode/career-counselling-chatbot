@@ -29,16 +29,16 @@ The **AI-Powered Career Counseling Chatbot** is a comprehensive digital advisor 
 
 ## 📂 Project Structure
 ```text
-career-counseling-chatbot/
+career-counselling-chatbot/
 ├── backend/            # FastAPI Source Code
 │   ├── app/            # Application logic (APIs, Services, Models)
 │   ├── data/           # Database seeds and vector store
-│   └── requirements.txt# Python dependencies
+│   └── requirements.txt # Python dependencies
 ├── frontend/           # React Source Code
 │   ├── src/            # Components, Pages, and Services
 │   └── public/         # Static assets
 ├── data/               # Project-wide data assets
-├── docs/               # Project documentation and reports
+├── PROJECT_GUIDE.md    # Detailed project documentation
 ├── SETUP.bat           # Automated environment setup script
 └── RUN_ALL.bat         # Single-command execution script
 ```
@@ -72,3 +72,8 @@ career-counseling-chatbot/
 - **Usman Khan** (22140163)
 
 **Supervisor:** Dr. Shahid Akbar — Department of Computer Science, AWKUM
+
+
+## Repository layout note
+
+The root also contains Windows launch and cleanup scripts, `backup/`, `cv-analyzer-ai/`, `frontend_simple/`, and `scratch/`. See [PROJECT_GUIDE.md](PROJECT_GUIDE.md) for additional background. Review a cleanup script before running it; the documented setup path uses `SETUP.bat` and `RUN_ALL.bat`.
